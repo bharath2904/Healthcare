@@ -1,0 +1,517 @@
+/* General Body and Container Styles */
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background-color: #eef2f6;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    margin: 0;
+    padding: 30px 20px;
+    box-sizing: border-box;
+    color: #333;
+    overflow-y: auto; /* Allow scrolling if content is long */
+}
+
+.container {
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 800px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    opacity: 0; /* For fade-in animation */
+    transform: translateY(20px); /* For slight upward animation */
+    animation: fadeInSlideUp 0.8s ease-out forwards;
+}
+
+/* Header Styles */
+header {
+    margin-bottom: 20px;
+}
+
+.logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px; /* Increased gap */
+    margin-bottom: 10px;
+}
+
+/* FIX: New styles for the image logo */
+.logo img.animated-logo {
+    height: 60px; /* Set a fixed height for the logo */
+    width: auto; /* Maintain aspect ratio */
+    object-fit: contain;
+    /* Apply the stethoscope animation if desired, but might look odd on a static image */
+    /* animation: animatedStethoscope 3s ease-in-out infinite; */ 
+    margin-right: 5px; /* Small gap between logo and text */
+}
+
+/* Remove or adjust styles for the old icon if it was here */
+.logo i { /* This block is no longer needed if you removed the <i> tag */
+    font-size: 2.8em; /* Slightly larger icon */
+    color: #1a73e8;
+}
+
+h1 {
+    color: #1a73e8;
+    font-size: 2.8em; /* Larger heading */
+    margin: 0;
+    font-weight: 700; /* Bolder */
+    letter-spacing: -0.5px; /* Slightly tighter text */
+}
+
+.subtitle {
+    color: #666;
+    font-size: 1.15em;
+    margin-top: 5px;
+}
+
+/* Input Section */
+.input-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px; /* Increased gap */
+}
+
+.textarea-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+textarea {
+    width: 100%;
+    /* FIX: Ample right padding for horizontal buttons on desktop */
+    padding: 15px 100px 15px 15px; /* space for 2 buttons (36px each) + gap (8px) + right offset */
+    border: 1px solid #dcdcdc;
+    border-radius: 8px;
+    font-size: 1.05em;
+    resize: vertical;
+    min-height: 150px;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    box-sizing: border-box; /* Ensure padding is included in width calculation */
+}
+
+textarea:focus {
+    border-color: #1a73e8;
+    box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.2); /* Focus ring */
+    outline: none;
+}
+
+.input-controls {
+    position: absolute;
+    /* FIX: Position at the top right, with buttons in a row for desktop */
+    top: 15px; /* Start from top */
+    right: 15px; /* Position from right edge of textarea */
+    display: flex;
+    flex-direction: row; /* Buttons side-by-side on desktop */
+    gap: 8px;
+    pointer-events: none; /* Make wrapper non-interactive */
+}
+.input-controls .control-btn {
+    pointer-events: auto; /* Make buttons interactive again */
+}
+
+
+.control-btn {
+    background-color: #f0f0f0;
+    color: #555;
+    border: none;
+    border-radius: 50%; /* Circular buttons */
+    width: 36px;
+    height: 36px;
+    font-size: 1em;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transition: background-color 0.2s ease, color 0.2s ease, transform 0.1s ease;
+}
+
+.control-btn:hover {
+    background-color: #e0e0e0;
+    color: #1a73e8;
+    transform: translateY(-1px);
+}
+.control-btn:active {
+    transform: translateY(0);
+}
+
+.control-btn.recording {
+    background-color: #dc3545; /* Red when recording */
+    color: white;
+    animation: pulse 1.5s infinite;
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+/* Image Upload Section */
+.image-upload-section {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    border: 2px dashed #dcdcdc; /* Dashed border for drag-and-drop feel */
+    border-radius: 10px;
+    padding: 20px;
+    transition: border-color 0.2s ease;
+    /* FIX: Ensure it takes full width and content is centered for responsiveness */
+    box-sizing: border-box; /* Include padding in width */
+}
+.image-upload-section:hover {
+    border-color: #a0c3f5;
+}
+
+.upload-btn {
+    background-color: #e8f0fe; /* Light blue */
+    color: #1a73e8;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    display: inline-flex; /* Changed from inline-flex to flex for width control */
+    align-items: center;
+    gap: 10px;
+    transition: background-color 0.2s ease;
+    font-weight: 600;
+    /* FIX: Ensure button fills available width in its container for mobile */
+    width: auto; /* Default auto width */
+    justify-content: center; /* Center icon and text */
+}
+.upload-btn:hover {
+    background-color: #d1e3ff;
+}
+
+.image-preview {
+    position: relative;
+    margin-top: 15px;
+    border: 1px solid #dcdcdc;
+    border-radius: 8px;
+    overflow: hidden;
+    max-width: 250px; /* Limit preview size */
+    max-height: 250px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.image-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.remove-image-btn {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background-color: rgba(220, 53, 69, 0.8); /* Red with transparency */
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: background-color 0.2s ease;
+}
+.remove-image-btn:hover {
+    background-color: #dc3545;
+}
+
+/* Primary Button */
+.primary-btn {
+    background-color: #1a73e8;
+    color: white;
+    padding: 14px 30px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.15em;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    min-width: 220px; /* Adjusted width */
+    font-weight: 600;
+}
+
+.primary-btn:hover:not(:disabled) {
+    background-color: #1669cc;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(26, 115, 232, 0.3);
+}
+
+.primary-btn:disabled {
+    background-color: #a0c3f5;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+/* Results Box */
+.results-box {
+    margin-top: 30px;
+    padding: 25px;
+    background-color: #f8fafd;
+    border-radius: 10px;
+    text-align: left;
+    min-height: 120px;
+    border: 1px solid #e0e6ed;
+    opacity: 0; /* For fade-in animation */
+    transform: translateY(20px);
+    animation: fadeInSlideUpResults 0.6s ease-out forwards;
+}
+
+.severity-indicator {
+    padding: 10px 18px; /* Slightly more padding */
+    border-radius: 20px; /* Pill-shaped */
+    margin-bottom: 20px;
+    font-weight: bold;
+    display: inline-flex; /* Use flex for alignment */
+    align-items: center;
+    color: white; /* This sets the text color of all direct children to white */
+    font-size: 1.05em;
+    gap: 8px;
+    /* Default background for loading state if JS doesn't set it */
+    background-color: #a0c3f5; /* Light blue default for initial "Processing..." state */
+}
+
+/* Ensure strong tag within severity-indicator also gets white color */
+.severity-indicator strong {
+    color: inherit;
+}
+
+.severity-level {
+    margin-left: 0; /* Remove default margin */
+    color: inherit; /* Ensure this span also inherits white */
+}
+
+/* Specific colors for severity */
+.severity-indicator[severity="Basic"] { background-color: #28a745; }
+.severity-indicator[severity="Moderate"] { background-color: #fd7e14; } /* A more vibrant orange */
+.severity-indicator[severity="Severe"] { background-color: #dc3545; }
+.severity-indicator[severity="Error"], .severity-indicator[severity="Unknown"], .severity-indicator[severity="Blocked"] { background-color: #6c757d; }
+
+
+.advice-content h3 {
+    color: #1a73e8;
+    font-size: 1.3em;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+}
+
+.advice-content h3 i {
+    color: #1a73e8;
+}
+
+.advice-text {
+    color: #444;
+    line-height: 1.8; /* Increased line height for readability */
+    text-align: justify;
+}
+
+.advice-text p {
+    margin-bottom: 1em; /* Space between paragraphs */
+}
+.advice-text ul {
+    list-style-type: disc;
+    margin-left: 20px;
+    padding-left: 0;
+}
+.advice-text li {
+    margin-bottom: 0.5em;
+}
+.advice-text strong {
+    font-weight: bold;
+    color: #222;
+}
+
+
+.disclaimer {
+    font-size: 0.85em;
+    color: #888;
+    margin-top: 25px;
+    border-top: 1px solid #e0e6ed;
+    padding-top: 18px;
+    text-align: center;
+    font-style: italic;
+}
+
+/* Footer */
+footer {
+    margin-top: 30px;
+    font-size: 0.9em;
+    color: #999;
+}
+.privacy-link {
+    color: #1a73e8;
+    text-decoration: none;
+}
+.privacy-link:hover {
+    text-decoration: underline;
+}
+
+/* Spinner Animation */
+.spinner {
+    display: inline-block;
+}
+.fa-spin {
+    animation: fa-spin 1s infinite linear;
+}
+
+@keyframes fa-spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* Custom Animations */
+@keyframes fadeInSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInSlideUpResults {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes animatedStethoscope { /* Keeping this animation but it won't apply to the image unless you add it */
+    0% { transform: rotate(0deg); }
+    25% { transform: rotate(-5deg); }
+    50% { transform: rotate(0deg); }
+    75% { transform: rotate(5deg); }
+    100% { transform: rotate(0deg); }
+}
+/* If you want the image to animate, apply this class to the <img> tag directly, e.g. class="animated-logo animated-stethoscope" */
+
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(220, 53, 69, 0.7); }
+    70% { box-shadow: 0 0 0 10px rgba(220, 53, 69, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(220, 53, 69, 0); }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .container {
+        padding: 25px;
+    }
+    h1 {
+        font-size: 2.2em;
+    }
+    .logo img.animated-logo { /* Adjust logo size for tablet */
+        height: 50px; 
+    }
+    .subtitle {
+        font-size: 1em;
+    }
+    .primary-btn {
+        padding: 12px 25px;
+        font-size: 1.05em;
+        min-width: unset;
+        width: 100%;
+    }
+    /* FIX: Ensure input controls stack vertically on smaller screens */
+    .input-controls {
+        flex-direction: column; /* Stack buttons vertically */
+        right: 10px; /* Adjust right position slightly */
+        gap: 6px; /* Reduce gap between stacked buttons */
+    }
+    textarea {
+        min-height: 120px;
+        /* FIX: Adjust padding for vertically stacked buttons (roughly width of one button + right offset) */
+        padding-right: 55px; /* Enough for 2 small buttons stacked */
+    }
+    .control-btn {
+        width: 32px;
+        height: 32px;
+        font-size: 0.9em;
+    }
+    .textarea-wrapper {
+        margin-bottom: 15px;
+    }
+    /* FIX: Make upload button full width on smaller screens */
+    .image-upload-section .upload-btn {
+        width: 100%; /* Force full width */
+        box-sizing: border-box; /* Include padding in width */
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 15px;
+    }
+    h1 {
+        font-size: 1.8em;
+    }
+    .logo img.animated-logo { /* Adjust logo size for mobile */
+        height: 40px; 
+    }
+    .subtitle {
+        font-size: 0.9em;
+    }
+    textarea {
+        font-size: 0.95em;
+        min-height: 110px;
+        /* FIX: Adjust padding for vertically stacked buttons on very small screens */
+        padding-right: 45px; /* Enough for 2 very small buttons stacked */
+    }
+    .input-controls {
+        right: 8px; /* Further adjust right for very small screens */
+        gap: 5px; /* Smaller gap */
+    }
+    .control-btn {
+        width: 28px; /* Smaller buttons */
+        height: 28px;
+        font-size: 0.8em;
+    }
+    .upload-btn {
+        font-size: 0.9em;
+        padding: 8px 15px;
+        width: 100%;
+        justify-content: center;
+    }
+    .image-preview {
+        max-width: 100%;
+    }
+    .advice-content h3 {
+        font-size: 1.1em;
+    }
+}

@@ -1,0 +1,31 @@
+# Python-specific ignores
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+venv/
+.env
+
+# Flask-specific ignores
+instance/ # If Flask creates an instance folder for configuration etc.
+
+# Operating System Files
+.DS_Store
+Thumbs.db
+
+# VS Code specific files
+.vscode/
+
+# IDE specific files
+.idea/ # PyCharm
+*.sublime-project
+*.sublime-workspace
+
+# Logs and databases
+*.log
+*.sqlite3
+*.db
+
+# Environment variables (CRITICAL for security)
+.env

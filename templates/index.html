@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HealCare : Health Advisor</title>
+    <link
+      rel="icon"
+      href="{{ url_for('static', filename='health_logo.png') }}"
+      type="image/x-icon"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="container fade-in">
+      <header>
+        <div class="logo">
+          <img
+            src="{{ url_for('static', filename='health_logo.png') }}"
+            alt="HealGenie Logo"
+            class="animated-logo"
+          />
+          <h1>HealthCare</h1>
+        </div>
+        <p class="subtitle">
+          AI-powered preliminary health advisor for minor concerns.
+        </p>
+      </header>
+
+      <main>
+        <div class="input-section">
+          <div class="textarea-wrapper">
+            <textarea
+              id="healthProblem"
+              placeholder="Describe your symptoms"
+              rows="7"
+            ></textarea>
+            <div class="input-controls">
+              <button
+                id="voiceInputBtn"
+                class="control-btn"
+                title="Speak your symptoms"
+              >
+                <i class="fas fa-microphone"></i>
+                <span class="sr-only">Voice Input</span>
+              </button>
+              <button
+                id="clearInputBtn"
+                class="control-btn"
+                title="Clear text and image"
+              >
+                <i class="fas fa-times-circle"></i>
+                <span class="sr-only">Clear Input</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="image-upload-section">
+            <label for="imageUpload" class="upload-btn">
+              <i class="fas fa-camera"></i> Upload Image
+              <input
+                type="file"
+                id="imageUpload"
+                accept="image/*"
+                style="display: none"
+              />
+            </label>
+            <div id="imagePreview" class="image-preview" style="display: none">
+              <img id="previewImage" src="#" alt="Image Preview" />
+              <button
+                id="removeImageBtn"
+                class="remove-image-btn"
+                title="Remove Image"
+              >
+                <i class="fas fa-trash-alt"></i>
+              </button>
+            </div>
+          </div>
+
+          <button id="diagnoseBtn" class="primary-btn">
+            <span class="button-text">Get AI Advice</span>
+            <span class="spinner" style="display: none">
+              <i class="fas fa-spinner fa-spin"></i>
+            </span>
+          </button>
+        </div>
+
+        <div id="results" class="results-box" style="display: none">
+          <div class="severity-indicator">
+            <strong>Severity:</strong>
+            <span id="severity" class="severity-level"></span>
+          </div>
+          <div class="advice-content">
+            <h3><i class="fas fa-lightbulb"></i> Advice:</h3>
+            <div id="advice" class="advice-text"></div>
+          </div>
+          <p class="disclaimer" id="disclaimer"></p>
+        </div>
+      </main>
+
+      <footer>
+        <p>
+          &copy; <span id="currentYear"></span> HealCare. Built for Technovia
+          2K25.
+        </p>
+      </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <script>
+      document.getElementById("currentYear").textContent =
+        new Date().getFullYear();
+    </script>
+  </body>
+</html>
